@@ -9,7 +9,7 @@ public class CharacterControl : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
             {
-                gameObject.transform.position += new Vector3(0.1f,0,0)
+                gameObject.transform.position += new Vector3(0.1f,0,0);
             }
     }
 
