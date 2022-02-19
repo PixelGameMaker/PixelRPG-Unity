@@ -8,14 +8,13 @@ public class CharacterControl : MonoBehaviour
     void Start()
     {
         if (Input.GetKey(KeyCode.D))
-            {
-                gameObject.transform.position += new Vector3(0.1f,0,0);
-            }
+        {
+            gameObject.transform.position += new Vector3(0.1f, 0, 0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
