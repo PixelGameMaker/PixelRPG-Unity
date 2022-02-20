@@ -4,6 +4,8 @@ public class MagicianMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
 
+    [SerializeField] private float jumpCoolDown = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
