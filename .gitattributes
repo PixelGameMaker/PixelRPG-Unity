@@ -1,13 +1,5 @@
-* text=auto
+* text=auto eol=lf
 
-# Enforce Unix newlines
-*.py    text eol=lf
-*.json  text eol=lf
-*.md    text eol=lf
-*.txt   text eol=lf
-*.ui    text eol=lf
-*.cmd linguist-vendored
-*.cs text eol=lf
 # Don't diff or textually merge source maps
 *.map   binary
 
