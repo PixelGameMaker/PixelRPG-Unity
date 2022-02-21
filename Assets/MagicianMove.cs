@@ -4,7 +4,9 @@ public class MagicianMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
 
-    [SerializeField] private float jumpCoolDown = 5f;
+    public float jumpCoolDown = 5f;
+    public float JumpCD = 5f;
+    public float spaceSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +17,18 @@ public class MagicianMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float spaceSpeed;
-        if (Input.GetKey(KeyCode.Space))
-            spaceSpeed = 5;
+        // float spaceSpeed;
+        // if JumpCD return Unbound than JumpCD = jumpCoolDown
+        if (Input.GetKey(KeyCode.Space) && JumpCD == jumpCoolDown)
+        {
+            spaceSpeed = moveSpeed * 2;
+            JumpCD = 0;
+        }
         else
+        {
             spaceSpeed = 0;
+        }
+
         var realSpeed = moveSpeed + spaceSpeed;
         if (Input.GetKey(KeyCode.D)) transform.Translate(realSpeed * Time.deltaTime, 0, 0);
 
@@ -29,6 +38,7 @@ public class MagicianMove : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S)) transform.Translate(0, -realSpeed * Time.deltaTime, 0);
         // Time.deltaTime can avoid the frame rate problem
+        if (JumpCD < jumpCoolDown) JumpCD += Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
