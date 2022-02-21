@@ -21,7 +21,7 @@ public class MagicianMove : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && JumpCD >= jumpCoolDown)
         {
-            JumpCD = 0;
+            // JumpCD = 0;
             realSpeed = moveSpeed + spaceSpeed;
             // Debug.Log("Jump");
         }
@@ -30,13 +30,30 @@ public class MagicianMove : MonoBehaviour
             realSpeed = moveSpeed;
         }
 
-        if (Input.GetKey(KeyCode.D)) transform.Translate(realSpeed * Time.deltaTime, 0, 0);
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            if (realSpeed > moveSpeed) JumpCD = 0;
+            transform.Translate(realSpeed * Time.deltaTime, 0, 0);
+        }
 
-        if (Input.GetKey(KeyCode.A)) transform.Translate(-realSpeed * Time.deltaTime, 0, 0);
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            if (realSpeed > moveSpeed) JumpCD = 0;
+            transform.Translate(-realSpeed * Time.deltaTime, 0, 0);
+        }
 
-        if (Input.GetKey(KeyCode.W)) transform.Translate(0, realSpeed * Time.deltaTime, 0);
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            if (realSpeed > moveSpeed) JumpCD = 0;
+            transform.Translate(0, realSpeed * Time.deltaTime, 0);
+        }
 
-        if (Input.GetKey(KeyCode.S)) transform.Translate(0, -realSpeed * Time.deltaTime, 0);
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+        {
+            if (realSpeed > moveSpeed) JumpCD = 0;
+            transform.Translate(0, -realSpeed * Time.deltaTime, 0);
+        }
+
         // Time.deltaTime can avoid the frame rate problem
         if (JumpCD < jumpCoolDown) JumpCD += Time.deltaTime;
         if (JumpCD >= jumpCoolDown) JumpCD = jumpCoolDown;
