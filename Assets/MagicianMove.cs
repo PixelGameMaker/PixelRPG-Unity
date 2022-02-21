@@ -5,58 +5,58 @@ public class MagicianMove : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
 
     public float jumpCoolDown = 5f;
-    public float JumpCD;
+    public float gameJumpCoolDown;
     public float spaceSpeed = 20f;
-    private float realSpeed;
+    private float _realSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("MagicianMoveInit");
-        JumpCD = jumpCoolDown;
+        gameJumpCoolDown = jumpCoolDown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && JumpCD >= jumpCoolDown)
+        if (Input.GetKey(KeyCode.Space) && gameJumpCoolDown >= jumpCoolDown)
         {
             // JumpCD = 0;
-            realSpeed = moveSpeed + spaceSpeed;
+            _realSpeed = moveSpeed + spaceSpeed;
             // Debug.Log("Jump");
         }
         else
         {
-            realSpeed = moveSpeed;
+            _realSpeed = moveSpeed;
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            if (realSpeed > moveSpeed) JumpCD = 0;
-            transform.Translate(realSpeed * Time.deltaTime, 0, 0);
+            if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
+            transform.Translate(_realSpeed * Time.deltaTime, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            if (realSpeed > moveSpeed) JumpCD = 0;
-            transform.Translate(-realSpeed * Time.deltaTime, 0, 0);
+            if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
+            transform.Translate(-_realSpeed * Time.deltaTime, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            if (realSpeed > moveSpeed) JumpCD = 0;
-            transform.Translate(0, realSpeed * Time.deltaTime, 0);
+            if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
+            transform.Translate(0, _realSpeed * Time.deltaTime, 0);
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
         {
-            if (realSpeed > moveSpeed) JumpCD = 0;
-            transform.Translate(0, -realSpeed * Time.deltaTime, 0);
+            if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
+            transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
         }
 
         // Time.deltaTime can avoid the frame rate problem
-        if (JumpCD < jumpCoolDown) JumpCD += Time.deltaTime;
-        if (JumpCD >= jumpCoolDown) JumpCD = jumpCoolDown;
+        if (gameJumpCoolDown < jumpCoolDown) gameJumpCoolDown += Time.deltaTime;
+        if (gameJumpCoolDown >= jumpCoolDown) gameJumpCoolDown = jumpCoolDown;
         // Debug.Log(JumpCD);
         /*
         if (realSpeed > moveSpeed)
