@@ -224,6 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpCoolDown: 5
+  JumpCD: 0
+  spaceSpeed: 20
 --- !u!61 &1363238454
 BoxCollider2D:
   m_ObjectHideFlags: 0
