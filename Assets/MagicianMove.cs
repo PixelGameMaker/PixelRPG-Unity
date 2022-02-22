@@ -6,7 +6,7 @@ public class MagicianMove : MonoBehaviour
 
     public float jumpCoolDown = 5f;
     public float gameJumpCoolDown;
-    public float spaceSpeed = 20f;
+    public float spaceSpeed = 200f;
     private float _realSpeed;
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class MagicianMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && gameJumpCoolDown >= jumpCoolDown)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift)) && gameJumpCoolDown >= jumpCoolDown)
         {
             // JumpCD = 0;
             _realSpeed = moveSpeed + spaceSpeed;
