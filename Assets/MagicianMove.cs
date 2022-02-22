@@ -19,7 +19,7 @@ public class MagicianMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift)) && gameJumpCoolDown >= jumpCoolDown)
+        if (Input.GetKey(KeyCode.Space) && gameJumpCoolDown >= jumpCoolDown)
         {
             // JumpCD = 0;
             _realSpeed = moveSpeed + spaceSpeed;
