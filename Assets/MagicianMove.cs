@@ -69,5 +69,6 @@ public class MagicianMove : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("EnemyBullet")) Debug.Log("MagicianHitBullet");
+        if (other.gameObject.CompareTag("Wall")) Debug.Log("WallHited");
     }
 }
