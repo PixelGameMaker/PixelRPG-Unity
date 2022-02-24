@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
+  - Wall_UP
+  - Wall_LEFT
+  - Wall_RIGHT
+  - Wall_DOWN
   layers:
   - Default
   - TransparentFX
