@@ -34,10 +34,7 @@ public class MagicianMove : MonoBehaviour
                 _realSpeed = moveSpeed + spaceSpeed;
                 // Debug.Log("Jump");
             }
-            else
-            {
-                _realSpeed = moveSpeed;
-            }
+            else _realSpeed = moveSpeed;
         }
         else if (HitWall == "Over")
         {
@@ -75,67 +72,21 @@ public class MagicianMove : MonoBehaviour
         // Time.deltaTime can avoid the frame rate problem
         if (gameJumpCoolDown < jumpCoolDown) gameJumpCoolDown += Time.deltaTime;
         if (gameJumpCoolDown >= jumpCoolDown) gameJumpCoolDown = jumpCoolDown;
-        // Debug.Log(JumpCD);
-        /*
-        if (realSpeed > moveSpeed)
-        {
-            // Debug.Log(realSpeed);
-        }
-        */
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            // Debug.Log("Attack");
-            // Debug.Log(Input.mousePosition);
             Vector3 mousePosition = Input.mousePosition;
-            /*
-            if (mousePosition.x < (width / 2) && mousePosition.y > (height / 2))
-            {
-                Debug.Log("左上");
-            }
-            else if (mousePosition.x < (width / 2) && mousePosition.y < (height / 2))
-            {
-                Debug.Log("左下");
-            }
-            else if (mousePosition.x > (width / 2) && mousePosition.y > (height / 2))
-            {
-                Debug.Log("右上");
-            }
-            else if (mousePosition.x > (width / 2) && mousePosition.y < (height / 2))
-            {
-                Debug.Log("右下");
-            }
-            */
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         // if (other.gameObject.CompareTag("EnemyBullet")) Debug.Log("MagicianHitBullet");
-        if (other.gameObject.CompareTag("Wall_LEFT")) 
-        {
-            // Debug.Log("WallHited");
-            HitWall = "LEFT";
-        }
-        else if (other.gameObject.CompareTag("Wall_RIGHT"))
-        {
-            HitWall = "RIGHT";
-        }
-        else if (other.gameObject.CompareTag("Wall_UP"))
-        {
-            HitWall = "UP";
-        }
-        else if (other.gameObject.CompareTag("Wall_DOWN"))
-        {
-            HitWall = "DOWN";
-        }
-        else
-        {
-            HitWall = "None";
-        }
+        if (other.gameObject.CompareTag("Wall_LEFT")) HitWall = "LEFT";
+        else if (other.gameObject.CompareTag("Wall_RIGHT")) HitWall = "RIGHT";
+        else if (other.gameObject.CompareTag("Wall_UP")) HitWall = "UP";
+        else if (other.gameObject.CompareTag("Wall_DOWN")) HitWall = "DOWN";
+        else HitWall = "None";
         
-        if (other.gameObject.CompareTag("EDGE"))
-        {
-            HitWall = "Over";
-        }
+        if (other.gameObject.CompareTag("EDGE")) HitWall = "Over";
     }
 }
