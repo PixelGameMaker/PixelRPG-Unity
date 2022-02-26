@@ -33,65 +33,33 @@ public class MagicianMove : MonoBehaviour
                 _realSpeed = moveSpeed;
             }
         }
-        else if (HitWall == "LEFT")
-        {
-            if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-            {
-                if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
-                transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-            }
-            HitWall = "None";
-        }
-        else if (HitWall == "RIGHT")
-        {
-            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-            {
-                if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
-                transform.Translate(-_realSpeed * Time.deltaTime, 0, 0);
-            }
-            HitWall = "None";
-        }
-        else if (HitWall == "UP")
-        {
-            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
-                transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
-            }
-            HitWall = "None";
-        }
-        else if (HitWall == "DOWN")
-        {
-            if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
-            {
-                if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
-                transform.Translate(0, _realSpeed * Time.deltaTime, 0);
-            }
-            HitWall = "None";
-        }
 
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && HitWall != "RIGHT")
         {
             if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
             transform.Translate(_realSpeed * Time.deltaTime, 0, 0);
+            HitWall = "None";
         }
 
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && HitWall != "LEFT")
         {
             if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
             transform.Translate(-_realSpeed * Time.deltaTime, 0, 0);
+            HitWall = "None";
         }
 
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && HitWall != "UP")
         {
             if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
             transform.Translate(0, _realSpeed * Time.deltaTime, 0);
+            HitWall = "None";
         }
 
-        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W) && HitWall != "DOWN")
         {
             if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
             transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
+            HitWall = "None";
         }
 
         // Time.deltaTime can avoid the frame rate problem
