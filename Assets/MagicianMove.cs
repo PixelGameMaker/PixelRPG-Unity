@@ -33,6 +33,10 @@ public class MagicianMove : MonoBehaviour
                 _realSpeed = moveSpeed;
             }
         }
+        else if (HitWall == "Over")
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && HitWall != "RIGHT")
         {
@@ -99,5 +103,9 @@ public class MagicianMove : MonoBehaviour
             HitWall = "None";
         }
         
+        if (other.gameObject.CompareTag("EDGE"))
+        {
+            HitWall = "Over";
+        }
     }
 }

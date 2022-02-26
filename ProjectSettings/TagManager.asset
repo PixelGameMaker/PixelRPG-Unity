@@ -8,6 +8,7 @@ TagManager:
   - Wall_LEFT
   - Wall_RIGHT
   - Wall_DOWN
+  - EDGE
   layers:
   - Default
   - TransparentFX
