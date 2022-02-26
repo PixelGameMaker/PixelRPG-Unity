@@ -9,6 +9,7 @@ TagManager:
   - Wall_RIGHT
   - Wall_DOWN
   - EDGE
+  - Bullet
   layers:
   - Default
   - TransparentFX
