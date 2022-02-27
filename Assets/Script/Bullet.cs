@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 3.5f;
     private float x;
     private float y;
     private int width;
@@ -34,6 +33,15 @@ public class Bullet : MonoBehaviour
         if (On)
         {
             transform.Translate(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("EDGE")) 
+        { 
+            Destroy(gameObject);
+            Debug.Log("Hit");
         }
     }
 }
