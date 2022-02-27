@@ -226,7 +226,7 @@ MonoBehaviour:
   moveSpeed: 3
   jumpCoolDown: 3
   gameJumpCoolDown: 0
-  spaceSpeed: 100
+  spaceSpeed: 80
 --- !u!61 &1363238454
 BoxCollider2D:
   m_ObjectHideFlags: 0

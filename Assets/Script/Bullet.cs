@@ -28,11 +28,11 @@ public class Bullet : MonoBehaviour
             y = (mousePosition.y - (height / 2));
             On = true;
             // Debug.Log(Mathf.Sqrt(Mathf.Pow(x / Mathf.Sqrt((Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 10), 2)+ Mathf.Pow(y / Mathf.Sqrt((Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 10), 2)));
-            // transform.Translate(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0);
+            transform.Translate(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0);
         }
         if (On)
         {
-            transform.Translate(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0);
+            // transform.Translate(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0);
         }
     }
 
@@ -40,7 +40,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EDGE")) 
         { 
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            // transform
             Debug.Log("Hit");
         }
     }

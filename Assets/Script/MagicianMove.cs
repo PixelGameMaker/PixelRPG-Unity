@@ -45,7 +45,6 @@ public class MagicianMove : MonoBehaviour
         {
             if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
             transform.Translate(_realSpeed * Time.deltaTime, 0, 0);
-            HitWall = "None";
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && HitWall != "LEFT")
@@ -88,5 +87,13 @@ public class MagicianMove : MonoBehaviour
         else HitWall = "None";
         
         if (other.gameObject.CompareTag("EDGE")) HitWall = "Over";
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall_LEFT")) HitWall = "None";
+        else if (other.gameObject.CompareTag("Wall_RIGHT")) HitWall = "None";
+        else if (other.gameObject.CompareTag("Wall_UP")) HitWall = "None";
+        else if (other.gameObject.CompareTag("Wall_DOWN")) HitWall = "None";
+        else HitWall = "None";
     }
 }
