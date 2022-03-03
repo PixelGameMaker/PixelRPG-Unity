@@ -123,6 +123,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &103652006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 103652008}
+  - component: {fileID: 103652007}
+  m_Layer: 0
+  m_Name: Bullet_EDGE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!68 &103652007
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103652006}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -7.4952235, y: 6.923446}
+  - {x: -9.860118, y: 6.923561}
+  - {x: -9.859951, y: -5.3300333}
+  - {x: 12.828537, y: -5.3299465}
+  - {x: 12.828727, y: 6.9231334}
+  - {x: -7.49551, y: 6.923463}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!4 &103652008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103652006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.484111, y: -0.7965072, z: -8.546211}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &130752488
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +259,7 @@ GameObject:
   - component: {fileID: 322279827}
   - component: {fileID: 322279826}
   - component: {fileID: 322279828}
+  - component: {fileID: 322279829}
   m_Layer: 0
   m_Name: Wall_UP
   m_TagString: Wall_UP
@@ -301,6 +360,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25.043177, y: 4.1358395}
   m_EdgeRadius: 0
+--- !u!114 &322279829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322279825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8a86e8041d8204cb64b42dc5197f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &452071811
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +383,7 @@ GameObject:
   - component: {fileID: 452071814}
   - component: {fileID: 452071813}
   - component: {fileID: 452071812}
+  - component: {fileID: 452071815}
   m_Layer: 0
   m_Name: Wall_RIGHT
   m_TagString: Wall_RIGHT
@@ -412,6 +484,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &452071815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452071811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8a86e8041d8204cb64b42dc5197f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &646992408
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +719,7 @@ GameObject:
   - component: {fileID: 1481959376}
   - component: {fileID: 1481959375}
   - component: {fileID: 1481959377}
+  - component: {fileID: 1481959378}
   m_Layer: 0
   m_Name: Wall_LEFT
   m_TagString: Wall_LEFT
@@ -735,6 +820,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9595337, y: 14.132172}
   m_EdgeRadius: 0
+--- !u!114 &1481959378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481959374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8a86e8041d8204cb64b42dc5197f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1945066096
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +901,7 @@ GameObject:
   - component: {fileID: 2067138387}
   - component: {fileID: 2067138386}
   - component: {fileID: 2067138385}
+  - component: {fileID: 2067138388}
   m_Layer: 0
   m_Name: Wall_DOWN
   m_TagString: Wall_DOWN
@@ -904,3 +1002,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2067138388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067138384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8a86e8041d8204cb64b42dc5197f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

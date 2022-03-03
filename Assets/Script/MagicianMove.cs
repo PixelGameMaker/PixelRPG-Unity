@@ -9,18 +9,13 @@ public class MagicianMove : MonoBehaviour
     public float spaceSpeed = 200f;
     private float _realSpeed;
     private string HitWall = "None";
-    private int width;
-    private int height;
+    public Vector3 Position;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("MagicianMoveInit");
         gameJumpCoolDown = jumpCoolDown;
-        width = Screen.width;
-        height = Screen.height;
-        Debug.Log(width);
-        Debug.Log(height);
     }
 
     // Update is called once per frame
@@ -71,10 +66,8 @@ public class MagicianMove : MonoBehaviour
         // Time.deltaTime can avoid the frame rate problem
         if (gameJumpCoolDown < jumpCoolDown) gameJumpCoolDown += Time.deltaTime;
         if (gameJumpCoolDown >= jumpCoolDown) gameJumpCoolDown = jumpCoolDown;
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            Vector3 mousePosition = Input.mousePosition;
-        }
+
+        Position = transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
