@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        move_vector = GameObject.Find("BulletManager").GetComponent<BulletManager>().Move_Vector;
+        move_vector = transform.parent.GetComponent<BulletManager>().Move_Vector;
     }
 
     // Update is called once per frame

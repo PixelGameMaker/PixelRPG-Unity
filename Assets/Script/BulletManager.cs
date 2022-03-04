@@ -12,8 +12,8 @@ public class BulletManager : MonoBehaviour
     private int height;
     public Vector3 Move_Vector = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 Position = new Vector3(0.0f, 0.0f, 0.0f);
-    public float CD = 1f;
-    public float GameCD;
+    [SerializeField] float CD = 0.3f;
+    [SerializeField] float GameCD;
 
     void Start()
     {
@@ -28,7 +28,11 @@ public class BulletManager : MonoBehaviour
         Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (GameCD >= CD) SpawnBullet();
+            if (GameCD >= CD) 
+            { 
+                SpawnBullet();
+                GameCD = 0; 
+            }
             else Debug.Log("CD");
         }
         if (GameCD < CD) GameCD += Time.deltaTime;
