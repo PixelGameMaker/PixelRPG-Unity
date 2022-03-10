@@ -439,7 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1537025846}
-  - component: {fileID: 1537025845}
+  - component: {fileID: 1537025847}
   m_Layer: 0
   m_Name: Enemy_bulletManager
   m_TagString: Untagged
@@ -447,24 +447,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1537025845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537025844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41cbd6b7d15c9a4aa379a3f6cfb8a13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletPrefabs:
-  - {fileID: 6066184017822115583}
-  Choose: 0
-  Move_Vector: {x: 0, y: 0, z: 0}
-  CD: 0.3
-  GameCD: 0
 --- !u!4 &1537025846
 Transform:
   m_ObjectHideFlags: 0
@@ -481,6 +463,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537025847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537025844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3421b4423b1f049458917d8f4d2678ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletPrefabs:
+  - {fileID: 6066184017822115583}
 --- !u!1001 &2135045098
 PrefabInstance:
   m_ObjectHideFlags: 0

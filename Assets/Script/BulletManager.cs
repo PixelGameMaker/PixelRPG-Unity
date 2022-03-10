@@ -33,7 +33,7 @@ public class BulletManager : MonoBehaviour
                 SpawnBullet();
                 GameCD = 0; 
             }
-            else Debug.Log("CD");
+            // else Debug.Log("CD");
         }
         if (GameCD < CD) GameCD += Time.deltaTime;
         if (GameCD >= CD) GameCD = CD;
@@ -42,7 +42,8 @@ public class BulletManager : MonoBehaviour
     public void SpawnBullet()
     {
         Move_Vector = Move();
-        Instantiate(BulletPrefabs[Choose], Position, Quaternion.identity, transform);
+        GameObject B = Instantiate(BulletPrefabs[Choose], Position, Quaternion.identity, transform);
+        B.name = "ATTACK";
     }
     public Vector3 Move()
     {
@@ -50,7 +51,8 @@ public class BulletManager : MonoBehaviour
         Vector3 vector_Move;
         x = (mousePosition.x - (width / 2));
         y = (mousePosition.y - (height / 2));
-        vector_Move = new Vector3(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0f);
-        return vector_Move;
+        // vector_Move = new Vector3(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0f);
+        vector_Move = new Vector3(x, y, 0);
+        return vector_Move.normalized/30;
     }
 }

@@ -3,30 +3,33 @@ using UnityEngine;
 public class MagicianMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
-
     public float jumpCoolDown = 5f;
     public float gameJumpCoolDown;
     public float spaceSpeed = 80f;
     private float _realSpeed;
-    private string HitWall = "None";
+    private string HitWall = "None"; // 檢查是否碰牆
     public Vector3 Position;
     private float _rotateSpeed = 1800f;
     private bool _isRotate = false;
-    private Quaternion Rotation = new Quaternion(0,0,0,1);
-    private int RotateTimes;
-    private bool _isLeft;
+    private Quaternion Rotation = new Quaternion(0,0,0,1); // 基礎方向
+    private int RotateTimes; // 旋轉次數
+    public bool _isLeft; // 需不需要反向
+
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("MagicianMoveInit");
         gameJumpCoolDown = jumpCoolDown;
-        Position = transform.position;
+        Position = transform.position; // 用來定位相機的初始位置
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        // 以下為跳躍(衝刺)的實現方法
         if (HitWall == "None")
         {
             if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift)) && gameJumpCoolDown >= jumpCoolDown)
@@ -47,7 +50,7 @@ public class MagicianMove : MonoBehaviour
         {
             if (_realSpeed > moveSpeed) gameJumpCoolDown = 0;
             transform.Translate(_realSpeed * Time.deltaTime, 0, 0);
-            _isLeft = false;
+            HitWall = "None";
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && HitWall != "LEFT")
@@ -76,11 +79,13 @@ public class MagicianMove : MonoBehaviour
         {
             transform.Rotate(0, 0, _rotateSpeed*Time.deltaTime);
             RotateTimes++;
+            gameJumpCoolDown = 0;
         }
         else if (_isRotate && RotateTimes < 15 && !_isLeft)
         {
             transform.Rotate(0, 0, -_rotateSpeed * Time.deltaTime);
             RotateTimes++;
+            gameJumpCoolDown = 0;
         }
         else
         {
@@ -96,6 +101,7 @@ public class MagicianMove : MonoBehaviour
         Position = transform.position;
     }
 
+    // 檢測是否與牆體的碰撞箱碰撞
     private void OnCollisionEnter2D(Collision2D other)
     {
         // if (other.gameObject.CompareTag("EnemyBullet")) Debug.Log("MagicianHitBullet");

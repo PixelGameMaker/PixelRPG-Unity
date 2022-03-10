@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Vector3 move_vector;
+    public Vector3 move_vector;
 
     // Start is called before the first frame update
     private void Start()
