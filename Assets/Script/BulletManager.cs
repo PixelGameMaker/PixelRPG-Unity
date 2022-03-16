@@ -14,6 +14,8 @@ public class BulletManager : MonoBehaviour
     private Vector3 Position = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField] float CD = 0.3f;
     [SerializeField] float GameCD;
+    public float MP;
+    private float MP_ADD = 8f;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class BulletManager : MonoBehaviour
         height = Screen.height;
         Debug.Log(width);
         Debug.Log(height);
+        MP = GameObject.Find("Magician").GetComponent<MagicianMove>().MP_Origin;
     }
 
     private void Update()
@@ -28,15 +31,18 @@ public class BulletManager : MonoBehaviour
         Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            if (GameCD >= CD) 
-            { 
+            if (GameCD >= CD && MP > 5)
+            {
                 SpawnBullet();
-                GameCD = 0; 
+                ModifyMP(-5);
+                GameCD = 0;
             }
-            // else Debug.Log("CD");
+            // else if (GameCD < CD && MP > 5) Debug.Log("CD");
+            // else Debug.Log("MP=0");
         }
         if (GameCD < CD) GameCD += Time.deltaTime;
         if (GameCD >= CD) GameCD = CD;
+        ADDMP();
     }
 
     public void SpawnBullet()
@@ -54,5 +60,18 @@ public class BulletManager : MonoBehaviour
         // vector_Move = new Vector3(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0f);
         vector_Move = new Vector3(x, y, 0);
         return vector_Move.normalized/30;
+    }
+
+    void ModifyMP(int num)
+    {
+        MP += num;
+        if (MP > 200) MP = 200;
+        if (MP < 0) MP = 0;
+    }
+    void ADDMP()
+    {
+        float time = Time.deltaTime;
+        MP += MP_ADD* time;
+        if (MP >= 200) MP = 200;
     }
 }

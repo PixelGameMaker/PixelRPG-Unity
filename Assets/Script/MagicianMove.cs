@@ -3,18 +3,21 @@ using UnityEngine;
 public class MagicianMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
-    public float jumpCoolDown = 5f;
+    public float jumpCoolDown = 3f;
     public float gameJumpCoolDown;
     public float spaceSpeed = 80f;
     private float _realSpeed;
     private string HitWall = "None"; // 檢查是否碰牆
     public Vector3 Position;
-    private float _rotateSpeed = 1800f;
-    private bool _isRotate = false;
-    private Quaternion Rotation = new Quaternion(0,0,0,1); // 基礎方向
-    private int RotateTimes; // 旋轉次數
+    public bool _isRotate = false;
     public bool _isLeft; // 需不需要反向
-
+    float HP_Origin = 100f;
+    public float MP_Origin = 200f;
+    [SerializeField] float HP;
+    [SerializeField] float MP;
+    [SerializeField] GameObject HPBar;
+    [SerializeField] GameObject MPBar;
+    [SerializeField] GameObject JCDBar;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,7 @@ public class MagicianMove : MonoBehaviour
         Debug.Log("MagicianMoveInit");
         gameJumpCoolDown = jumpCoolDown;
         Position = transform.position; // 用來定位相機的初始位置
-
+        HP = HP_Origin;
     }
 
     // Update is called once per frame
@@ -74,31 +77,15 @@ public class MagicianMove : MonoBehaviour
             transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
             HitWall = "None";
         }
-
-        if (_isRotate && RotateTimes < 15 && _isLeft)
-        {
-            transform.Rotate(0, 0, _rotateSpeed*Time.deltaTime);
-            RotateTimes++;
-            gameJumpCoolDown = 0;
-        }
-        else if (_isRotate && RotateTimes < 15 && !_isLeft)
-        {
-            transform.Rotate(0, 0, -_rotateSpeed * Time.deltaTime);
-            RotateTimes++;
-            gameJumpCoolDown = 0;
-        }
-        else
-        {
-            _isRotate = false;
-            RotateTimes = 0;
-            transform.rotation = Rotation;
-        }
-
         // Time.deltaTime can avoid the frame rate problem
         if (gameJumpCoolDown < jumpCoolDown) gameJumpCoolDown += Time.deltaTime;
         if (gameJumpCoolDown >= jumpCoolDown) gameJumpCoolDown = jumpCoolDown;
 
         Position = transform.position;
+        MP = System.Convert.ToInt32(GameObject.Find("BulletManager").GetComponent<BulletManager>().MP);
+        ScaleHPBar(HP);
+        ScaleMPBar(MP);
+        ScaleJCDBar(gameJumpCoolDown);
     }
 
     // 檢測是否與牆體的碰撞箱碰撞
@@ -110,8 +97,9 @@ public class MagicianMove : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall_UP")) HitWall = "UP";
         else if (other.gameObject.CompareTag("Wall_DOWN")) HitWall = "DOWN";
         else HitWall = "None";
-        
         if (other.gameObject.CompareTag("EDGE")) HitWall = "Over";
+
+        if (other.gameObject.CompareTag("Enemy")) ModifyHP(-5);
     }
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -120,5 +108,33 @@ public class MagicianMove : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall_UP")) HitWall = "None";
         else if (other.gameObject.CompareTag("Wall_DOWN")) HitWall = "None";
         else HitWall = "None";
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // if (collision.gameObject.CompareTag("Bullet")) ModifyHP(-5);
+    }
+    void ModifyHP(int num)
+    {
+        HP += num;
+        if (HP > 100) HP = 100;
+        if (HP < 0) HP = 0;
+    }
+    void ScaleHPBar(float Hp)
+    {
+        float hp = Hp / HP_Origin;
+        Vector3 Scale = new Vector3(hp, 1, 1);
+        HPBar.transform.localScale = Scale;
+    }
+    void ScaleMPBar(float Mp)
+    {
+        float mp = Mp / MP_Origin;
+        Vector3 Scale = new Vector3(mp, 1, 1);
+        MPBar.transform.localScale = Scale;
+    }
+    void ScaleJCDBar(float Cd)
+    {
+        float cd = Cd / jumpCoolDown;
+        Vector3 Scale = new Vector3(cd, 1, 1);
+        JCDBar.transform.localScale = Scale;
     }
 }

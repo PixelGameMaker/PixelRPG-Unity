@@ -11,6 +11,7 @@ TagManager:
   - EDGE
   - Bullet
   - Bullet_EDGE
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -59,4 +60,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 3135541761
+    locked: 0
+  - name: UI
+    uniqueID: 2577704337
     locked: 0
