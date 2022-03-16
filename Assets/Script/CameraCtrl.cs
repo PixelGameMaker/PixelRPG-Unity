@@ -10,7 +10,7 @@ public class CameraCtrl : MonoBehaviour
     void Start()
     {
         // �]�w���Y����¦��m
-        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
+        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         Position.z = -10;
         transform.position = Position;
     }
@@ -19,7 +19,7 @@ public class CameraCtrl : MonoBehaviour
     void Update()
     {
         // ���H�}�Ⲿ��
-        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
+        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         Position.z = -10;
         transform.position = Position;
 

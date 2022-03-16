@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
     [SerializeField] GameObject[] BulletPrefabs;
     public int Choose;
-    private float x;
-    private float y;
-    private int width;
-    private int height;
     public Vector3 Move_Vector = new Vector3(0.0f, 0.0f, 0.0f);
-    private Vector3 Position = new Vector3(0.0f, 0.0f, 0.0f);
     [SerializeField] float CD = 0.3f;
     [SerializeField] float GameCD;
     public float MP;
+    private int height;
     private float MP_ADD = 8f;
+    private Vector3 Position = new Vector3(0.0f, 0.0f, 0.0f);
+    private int width;
+    private float x;
+    private float y;
 
     void Start()
     {
@@ -23,23 +21,22 @@ public class BulletManager : MonoBehaviour
         height = Screen.height;
         Debug.Log(width);
         Debug.Log(height);
-        MP = GameObject.Find("Magician").GetComponent<MagicianMove>().MP_Origin;
+        MP = GameObject.Find("Magician").GetComponent<MagicianMove>().mpOrigin;
     }
 
     private void Update()
     {
-        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
+        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         if (Input.GetKey(KeyCode.Mouse0))
-        {
             if (GameCD >= CD && MP > 5)
             {
                 SpawnBullet();
                 ModifyMP(-5);
                 GameCD = 0;
             }
-            // else if (GameCD < CD && MP > 5) Debug.Log("CD");
-            // else Debug.Log("MP=0");
-        }
+
+        // else if (GameCD < CD && MP > 5) Debug.Log("CD");
+        // else Debug.Log("MP=0");
         if (GameCD < CD) GameCD += Time.deltaTime;
         if (GameCD >= CD) GameCD = CD;
         ADDMP();
@@ -51,6 +48,7 @@ public class BulletManager : MonoBehaviour
         GameObject B = Instantiate(BulletPrefabs[Choose], Position, Quaternion.identity, transform);
         B.name = "ATTACK";
     }
+
     public Vector3 Move()
     {
         Vector3 mousePosition = Input.mousePosition;
@@ -59,7 +57,7 @@ public class BulletManager : MonoBehaviour
         y = (mousePosition.y - (height / 2));
         // vector_Move = new Vector3(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0f);
         vector_Move = new Vector3(x, y, 0);
-        return vector_Move.normalized/30;
+        return vector_Move.normalized / 30;
     }
 
     void ModifyMP(int num)
@@ -68,10 +66,11 @@ public class BulletManager : MonoBehaviour
         if (MP > 200) MP = 200;
         if (MP < 0) MP = 0;
     }
+
     void ADDMP()
     {
         float time = Time.deltaTime;
-        MP += MP_ADD* time;
+        MP += MP_ADD * time;
         if (MP >= 200) MP = 200;
     }
 }

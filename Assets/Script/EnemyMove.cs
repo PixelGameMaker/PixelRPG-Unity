@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    [SerializeField] float HP = 50;
+    Vector3 Back;
+    int Control;
+    Vector3 forward;
     Vector3 position;
     Vector3 Position;
-    Vector3 forward;
-    Vector3 Back;
     float x, y, z;
-    int Control;
-    [SerializeField]float HP = 50;
 
     // Start is called before the first frame update
     void Start()
     {
-        Control = transform.parent.GetComponent<EnemyManeger>().control;
+        Control = transform.parent.GetComponent<EnemyManager>().control;
     }
 
     // Update is called once per frame
@@ -24,9 +22,9 @@ public class EnemyMove : MonoBehaviour
         x = Random.Range(-10f, 10f);
         y = Random.Range(-5f, 5f);
         position = transform.position;
-        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
+        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         forward = Position - position;
-        transform.Translate(forward.normalized* Control / 50);
+        transform.Translate(forward.normalized * Control / 50);
         if (HP <= 0) Destroy(gameObject);
     }
 
@@ -57,8 +55,8 @@ public class EnemyMove : MonoBehaviour
             ReduceHP(5);
             Destroy(collision.gameObject);
         }
-        
     }
+
     void ReduceHP(int num)
     {
         HP -= num;
