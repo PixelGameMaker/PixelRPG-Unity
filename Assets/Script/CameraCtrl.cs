@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class CameraCtrl : MonoBehaviour
 {
-    [SerializeField] GameObject[] prefabs; // ��a�O��prefab���o��
+    [SerializeField] private GameObject[] prefabs; // 把地板的prefab放到這裡
     private Vector3 BGPosition;
-    private bool I, II, III, IV, VI, VII, VIII, IX; // �ΨӧP�_�Ӷ��a�O�O�_�ͦ�
+    private bool I, II, III, IV, VI, VII, VIII, IX; // 用來判斷該塊地板是否生成
     private Vector3 Position;
 
     void Start()
     {
-        // �]�w���Y����¦��m
+        // 設定鏡頭的基礎位置
         Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         Position.z = -10;
         transform.position = Position;
@@ -18,12 +18,12 @@ public class CameraCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ���H�}�Ⲿ��
+        // 跟隨腳色移動
         Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         Position.z = -10;
         transform.position = Position;
 
-        // �۰ʥͦ����
+        // 自動生成邊界
         if (transform.position.y > 3 && !II) II = Spawn(BGPosition = new Vector3(0, 12.44f, 0), "II");
         else if (transform.position.y < 3 && II) II = destroy("II");
         if (transform.position.x < -6 && !IV) IV = Spawn(BGPosition = new Vector3(-22.89f, 0, 0), "IV"); //   x <-6  y>3
@@ -42,7 +42,7 @@ public class CameraCtrl : MonoBehaviour
         else if ((!VIII || !VI) && IX) IX = destroy("IX");
     }
 
-    // �ͦ��a�O
+    // 生成地板
     bool Spawn(Vector3 vector, string name)
     {
         GameObject BG = Instantiate(prefabs[0], vector, Quaternion.identity);
@@ -50,7 +50,7 @@ public class CameraCtrl : MonoBehaviour
         return true;
     }
 
-    // �P���a�O
+    // 銷毀地板
     bool destroy(string name)
     {
         var BG = GameObject.Find(name);
