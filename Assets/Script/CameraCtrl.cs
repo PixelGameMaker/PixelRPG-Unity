@@ -1,33 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class CameraCtrl : MonoBehaviour
 {
+    [SerializeField] GameObject[] prefabs; // ï¿½ï¿½aï¿½Oï¿½ï¿½prefabï¿½ï¿½ï¿½oï¿½ï¿½
+    private Vector3 BGPosition;
+    private bool I, II, III, IV, VI, VII, VIII, IX; // ï¿½Î¨Ó§Pï¿½_ï¿½Ó¶ï¿½ï¿½aï¿½Oï¿½Oï¿½_ï¿½Í¦ï¿½
     private Vector3 Position;
-    [SerializeField] GameObject[] prefabs; // §â¦aªOªºprefab©ñ¨ì³o¸Ì
-    private Vector3 BGPosition; 
-    private bool I,II,III,IV,VI,VII,VIII,IX; // ¥Î¨Ó§PÂ_¸Ó¶ô¦aªO¬O§_¥Í¦¨
 
     void Start()
     {
-        // ³]©wÃèÀYªº°òÂ¦¦ì¸m
+        // ï¿½]ï¿½wï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½Â¦ï¿½ï¿½m
         Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
         Position.z = -10;
         transform.position = Position;
     }
+
     // Update is called once per frame
     void Update()
     {
-        // ¸òÀH¸}¦â²¾°Ê
-        Position  = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
+        // ï¿½ï¿½ï¿½Hï¿½}ï¿½â²¾ï¿½ï¿½
+        Position = GameObject.Find("Magician").GetComponent<MagicianMove>().Position;
         Position.z = -10;
         transform.position = Position;
 
-        // ¦Û°Ê¥Í¦¨Ãä¬É
+        // ï¿½Û°Ê¥Í¦ï¿½ï¿½ï¿½ï¿½
         if (transform.position.y > 3 && !II) II = Spawn(BGPosition = new Vector3(0, 12.44f, 0), "II");
         else if (transform.position.y < 3 && II) II = destroy("II");
-        if (transform.position.x < -6 && !IV) IV = Spawn(BGPosition = new Vector3(-22.89f, 0, 0), "IV");  //   x <-6  y>3
+        if (transform.position.x < -6 && !IV) IV = Spawn(BGPosition = new Vector3(-22.89f, 0, 0), "IV"); //   x <-6  y>3
         else if (transform.position.x > -6 && IV) IV = destroy("IV");
         if (transform.position.x > 6 && !VI) VI = Spawn(BGPosition = new Vector3(22.89f, 0, 0), "VI");
         else if (transform.position.x < 6 && VI) VI = destroy("VI");
@@ -41,10 +40,9 @@ public class Camera : MonoBehaviour
         else if ((!VIII || !IV) && VII) VII = destroy("VII");
         if ((VIII && VI) && !IX) IX = Spawn(BGPosition = new Vector3(22.89f, -12.44f, 0), "IX");
         else if ((!VIII || !VI) && IX) IX = destroy("IX");
-
     }
 
-    // ¥Í¦¨¦aªO
+    // ï¿½Í¦ï¿½ï¿½aï¿½O
     bool Spawn(Vector3 vector, string name)
     {
         GameObject BG = Instantiate(prefabs[0], vector, Quaternion.identity);
@@ -52,7 +50,7 @@ public class Camera : MonoBehaviour
         return true;
     }
 
-    // ¾P·´¦aªO
+    // ï¿½Pï¿½ï¿½ï¿½aï¿½O
     bool destroy(string name)
     {
         var BG = GameObject.Find(name);

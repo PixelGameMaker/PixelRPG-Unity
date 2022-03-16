@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MagicianMove : MonoBehaviour
@@ -6,33 +7,32 @@ public class MagicianMove : MonoBehaviour
     public float jumpCoolDown = 3f;
     public float gameJumpCoolDown;
     public float spaceSpeed = 80f;
-    private float _realSpeed;
-    private string HitWall = "None"; // ÀË¬d¬O§_¸IÀð
     public Vector3 Position;
-    public bool _isRotate = false;
-    public bool _isLeft; // »Ý¤£»Ý­n¤Ï¦V
-    float HP_Origin = 100f;
+    public bool _isRotate;
+    public bool _isLeft; // éœ€ä¸éœ€è¦åå‘
     public float MP_Origin = 200f;
     [SerializeField] float HP;
     [SerializeField] float MP;
     [SerializeField] GameObject HPBar;
     [SerializeField] GameObject MPBar;
     [SerializeField] GameObject JCDBar;
+    private float _realSpeed;
+    private string HitWall = "None"; // æª¢æŸ¥æ˜¯å¦ç¢°ç‰†
+    float HP_Origin = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("MagicianMoveInit");
         gameJumpCoolDown = jumpCoolDown;
-        Position = transform.position; // ¥Î¨Ó©w¦ì¬Û¾÷ªºªì©l¦ì¸m
+        Position = transform.position; // ç”¨ä¾†å®šä½ç›¸æ©Ÿçš„åˆå§‹ä½ç½®
         HP = HP_Origin;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        // ¥H¤U¬°¸õÅD(½Ä¨ë)ªº¹ê²{¤èªk
+        // ä»¥ä¸‹ç‚ºè·³èº(è¡åˆº)çš„å¯¦ç¾æ–¹æ³•
         if (HitWall == "None")
         {
             if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift)) && gameJumpCoolDown >= jumpCoolDown)
@@ -77,18 +77,19 @@ public class MagicianMove : MonoBehaviour
             transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
             HitWall = "None";
         }
+
         // Time.deltaTime can avoid the frame rate problem
         if (gameJumpCoolDown < jumpCoolDown) gameJumpCoolDown += Time.deltaTime;
         if (gameJumpCoolDown >= jumpCoolDown) gameJumpCoolDown = jumpCoolDown;
 
         Position = transform.position;
-        MP = System.Convert.ToInt32(GameObject.Find("BulletManager").GetComponent<BulletManager>().MP);
+        MP = Convert.ToInt32(GameObject.Find("BulletManager").GetComponent<BulletManager>().MP);
         ScaleHPBar(HP);
         ScaleMPBar(MP);
         ScaleJCDBar(gameJumpCoolDown);
     }
 
-    // ÀË´ú¬O§_»PÀðÅéªº¸I¼²½c¸I¼²
+    // æª¢æ¸¬æ˜¯å¦èˆ‡ç‰†é«”çš„ç¢°æ’žç®±ç¢°æ’ž
     private void OnCollisionEnter2D(Collision2D other)
     {
         // if (other.gameObject.CompareTag("EnemyBullet")) Debug.Log("MagicianHitBullet");
@@ -101,6 +102,7 @@ public class MagicianMove : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy")) ModifyHP(-5);
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Wall_LEFT")) HitWall = "None";
@@ -109,28 +111,33 @@ public class MagicianMove : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall_DOWN")) HitWall = "None";
         else HitWall = "None";
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // if (collision.gameObject.CompareTag("Bullet")) ModifyHP(-5);
     }
+
     void ModifyHP(int num)
     {
         HP += num;
         if (HP > 100) HP = 100;
         if (HP < 0) HP = 0;
     }
+
     void ScaleHPBar(float Hp)
     {
         float hp = Hp / HP_Origin;
         Vector3 Scale = new Vector3(hp, 1, 1);
         HPBar.transform.localScale = Scale;
     }
+
     void ScaleMPBar(float Mp)
     {
         float mp = Mp / MP_Origin;
         Vector3 Scale = new Vector3(mp, 1, 1);
         MPBar.transform.localScale = Scale;
     }
+
     void ScaleJCDBar(float Cd)
     {
         float cd = Cd / jumpCoolDown;
