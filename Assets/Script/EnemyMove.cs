@@ -24,7 +24,9 @@ public class EnemyMove : MonoBehaviour
         position = transform.position;
         Position = GameObject.Find("Magician").GetComponent<MagicianMove>().position;
         forward = Position - position;
-        transform.Translate(forward.normalized * Control / 50);
+        Debug.Log(Mathf.Sqrt(Mathf.Pow(forward.x, 2) + Mathf.Pow(forward.y, 2)));
+        forward = forward.normalized;
+        transform.Translate(forward * Control / 70);
         if (HP <= 0) Destroy(gameObject);
     }
 
@@ -48,11 +50,9 @@ public class EnemyMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("HIT");
             Back = collision.GetComponent<Bullet>().move_vector.normalized;
-            Debug.Log(Back);
             transform.Translate(Back);
-            ReduceHP(5);
+            ReduceHP(5); // °O±o§ï
             Destroy(collision.gameObject);
         }
     }

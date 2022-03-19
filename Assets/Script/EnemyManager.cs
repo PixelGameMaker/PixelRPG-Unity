@@ -35,6 +35,8 @@ public class EnemyManager : MonoBehaviour
         {
             level++;
             _start = false;
+            GameObject.Find("Items").GetComponent<SpawnItems>().apple_isEat = false;
+            GameObject.Find("Items").GetComponent<SpawnItems>().MPD_isEat = false;
         }
 
         GameObject.Find("LevelNum").GetComponent<Text>().text = (level + 1).ToString();
@@ -42,7 +44,7 @@ public class EnemyManager : MonoBehaviour
         GameObject.Find("EnemyNum").GetComponent<Text>().text = enemyNum.ToString();
     }
 
-    void SpawnEnemy()
+    private void SpawnEnemy()
     {
         var x = Random.Range(-11f, 11f);
         var y = Random.Range(-5.7f, 5.7f);

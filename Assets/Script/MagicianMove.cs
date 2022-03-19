@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
 
 public class MagicianMove : MonoBehaviour
 {
+    private const float HP_Origin = 100f;
     [SerializeField] private float moveSpeed = 3f;
     public float jumpCoolDown = 3f;
     public float gameJumpCoolDown;
@@ -12,6 +14,9 @@ public class MagicianMove : MonoBehaviour
     [FormerlySerializedAs("_isRotate")] public bool isRotate;
     [FormerlySerializedAs("_isLeft")] public bool isLeft; // 需不需要反向
     [FormerlySerializedAs("MP_Origin")] public float mpOrigin = 200f;
+    [SerializeField] private GameObject hpnum;
+    [SerializeField] private GameObject mpnum;
+    [SerializeField] private GameObject jcdnum;
 
     [FormerlySerializedAs("HP")] [SerializeField]
     private float hp;
@@ -30,7 +35,6 @@ public class MagicianMove : MonoBehaviour
 
     private string _hitWall = "None"; // 檢查是否碰牆
     private float _realSpeed;
-    float HP_Origin = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -112,7 +116,7 @@ public class MagicianMove : MonoBehaviour
         else _hitWall = "None";
         if (other.gameObject.CompareTag("EDGE")) _hitWall = "Over";
 
-        if (other.gameObject.CompareTag("Enemy")) ModifyHp(-5);
+        if (other.gameObject.CompareTag("Enemy")) ModifyHp(-3);
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -124,12 +128,19 @@ public class MagicianMove : MonoBehaviour
         else _hitWall = "None";
     }
 
-    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // if (collision.gameObject.CompareTag("Bullet")) ModifyHP(-5);
+        if (collision.gameObject.CompareTag("Apple"))
+        {
+            GetApple();
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("MPDrug"))
+        {
+            GetMPDurg();
+            Destroy(collision.gameObject);
+        }
     }
-    */
     private void ModifyHp(int num)
     {
         hp += num;
@@ -139,22 +150,50 @@ public class MagicianMove : MonoBehaviour
 
     private void ScaleHpBar(float Hp)
     {
-        var hp = Hp / HP_Origin;
-        var Scale = new Vector3(hp, 1, 1);
+        var HP = Hp / HP_Origin;
+        var Scale = new Vector3(HP, 1, 1);
         hpBar.transform.localScale = Scale;
+        hpnum.GetComponent<Text>().text = Convert.ToString(Hp);
     }
 
     private void ScaleMpBar(float Mp)
     {
+<<<<<<< HEAD
         var mp = Mp / mpOrigin;
         var Scale = new Vector3(mp, 1, 1);
         mpBar.transform.localScale = Scale;
+        mpnum.GetComponent<Text>().text = Convert.ToString(Mp);
+=======
+        var MP = Mp / mpOrigin;
+        var scale = new Vector3(MP, 1, 1);
+        mpBar.transform.localScale = scale;
+>>>>>>> 83b76f585ea5ace84d001c90f158e95845dbf583
     }
 
     private void ScaleJcdBar(float Cd)
     {
         var cd = Cd / jumpCoolDown;
+<<<<<<< HEAD
         var Scale = new Vector3(cd, 1, 1);
         jcdBar.transform.localScale = Scale;
+        jcdnum.GetComponent<Text>().text = Convert.ToString(Convert.ToInt32(3f - Cd));
+    }
+
+    void GetApple()
+    {
+        ModifyHp(20);
+        GameObject.Find("Items").GetComponent<SpawnItems>().apple_isSpawn = false;
+        GameObject.Find("Items").GetComponent<SpawnItems>().apple_isEat = true;
+    }
+
+    void GetMPDurg()
+    {
+        GameObject.Find("BulletManager").GetComponent<BulletManager>().ModifyMP(200);
+        GameObject.Find("Items").GetComponent<SpawnItems>().MPD_isSpawn = false;
+        GameObject.Find("Items").GetComponent<SpawnItems>().MPD_isEat = true;
+=======
+        var scale = new Vector3(cd, 1, 1);
+        jcdBar.transform.localScale = scale;
+>>>>>>> 83b76f585ea5ace84d001c90f158e95845dbf583
     }
 }
