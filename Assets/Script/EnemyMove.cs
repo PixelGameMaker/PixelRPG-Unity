@@ -50,7 +50,7 @@ public class EnemyMove : MonoBehaviour
         {
             Debug.Log("HIT");
             Back = collision.GetComponent<Bullet>().move_vector.normalized;
-            Debug.Log(Back);
+            // Debug.Log(Back);
             transform.Translate(Back);
             ReduceHP(5);
             Destroy(collision.gameObject);
