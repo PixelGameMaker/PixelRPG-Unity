@@ -38,9 +38,11 @@ public class EnemyManager : MonoBehaviour
         }
 
         GameObject.Find("LevelNum").GetComponent<Text>().text = (level + 1).ToString();
-        var enemyNum = transform.childCount - 1;
-        GameObject.Find("EnemyNum").GetComponent<Text>().text = enemyNum.ToString();
+        /*
+        // var enemyNum = transform.childCount - 1;
+        // GameObject.Find("EnemyNum").GetComponent<Text>().text = enemyNum.ToString();
         // Object in scene/canvas/EnemyNum
+        */
     }
 
     private void SpawnEnemy()
