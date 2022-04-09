@@ -1146,15 +1146,15 @@ MonoBehaviour:
   jumpCoolDown: 3
   gameJumpCoolDown: 0
   spaceSpeed: 200
-  Position: {x: 0, y: 0, z: 0}
-  _isRotate: 0
-  _isLeft: 0
-  MP_Origin: 200
-  HP: 0
-  MP: 0
-  HPBar: {fileID: 1869229544}
-  MPBar: {fileID: 1994185779}
-  JCDBar: {fileID: 1770774583}
+  position: {x: 0, y: 0, z: 0}
+  isRotate: 0
+  isLeft: 0
+  mpOrigin: 200
+  hp: 0
+  mp: 0
+  hpBar: {fileID: 1869229544}
+  mpBar: {fileID: 1994185779}
+  jcdBar: {fileID: 1770774583}
 --- !u!61 &1363238454
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1843,7 +1843,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 1
 --- !u!222 &1715414756
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2309,7 +2309,6 @@ MonoBehaviour:
   level: 0
   prefabs:
   - {fileID: 964961486}
-  Level: {fileID: 1715414753}
 --- !u!4 &2057556078
 Transform:
   m_ObjectHideFlags: 0

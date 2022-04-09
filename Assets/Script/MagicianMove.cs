@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 public class MagicianMove : MonoBehaviour
 {
+    private const float HP_Origin = 100f;
     [SerializeField] private float moveSpeed = 3f;
     public float jumpCoolDown = 3f;
     public float gameJumpCoolDown;
@@ -30,7 +31,6 @@ public class MagicianMove : MonoBehaviour
 
     private string _hitWall = "None"; // 檢查是否碰牆
     private float _realSpeed;
-    float HP_Origin = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -139,22 +139,22 @@ public class MagicianMove : MonoBehaviour
 
     private void ScaleHpBar(float Hp)
     {
-        var hp = Hp / HP_Origin;
-        var Scale = new Vector3(hp, 1, 1);
+        var HP = Hp / HP_Origin;
+        var Scale = new Vector3(HP, 1, 1);
         hpBar.transform.localScale = Scale;
     }
 
     private void ScaleMpBar(float Mp)
     {
-        var mp = Mp / mpOrigin;
-        var Scale = new Vector3(mp, 1, 1);
-        mpBar.transform.localScale = Scale;
+        var MP = Mp / mpOrigin;
+        var scale = new Vector3(MP, 1, 1);
+        mpBar.transform.localScale = scale;
     }
 
     private void ScaleJcdBar(float Cd)
     {
         var cd = Cd / jumpCoolDown;
-        var Scale = new Vector3(cd, 1, 1);
-        jcdBar.transform.localScale = Scale;
+        var scale = new Vector3(cd, 1, 1);
+        jcdBar.transform.localScale = scale;
     }
 }

@@ -40,9 +40,10 @@ public class EnemyManager : MonoBehaviour
         GameObject.Find("LevelNum").GetComponent<Text>().text = (level + 1).ToString();
         var enemyNum = transform.childCount - 1;
         GameObject.Find("EnemyNum").GetComponent<Text>().text = enemyNum.ToString();
+        // Object in scene/canvas/EnemyNum
     }
 
-    void SpawnEnemy()
+    private void SpawnEnemy()
     {
         var x = Random.Range(-11f, 11f);
         var y = Random.Range(-5.7f, 5.7f);
