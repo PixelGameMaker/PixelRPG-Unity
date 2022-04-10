@@ -90,6 +90,8 @@ public class MagicianMove : MonoBehaviour
             _hitWall = "None";
         }
 
+        if (Input.GetKey(KeyCode.Escape)) Application.Quit();
+
         // Time.deltaTime can avoid the frame rate problem
         if (gameJumpCoolDown < jumpCoolDown) gameJumpCoolDown += Time.deltaTime;
         if (gameJumpCoolDown >= jumpCoolDown) gameJumpCoolDown = jumpCoolDown;
