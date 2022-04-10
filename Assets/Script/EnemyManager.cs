@@ -29,6 +29,7 @@ public class EnemyManager : MonoBehaviour
 
             _start = true;
         }
+        // on new level spawn more enemies
 
         bool isEnemy = GameObject.Find("Clone Enemy");
         if (!isEnemy)
@@ -36,12 +37,14 @@ public class EnemyManager : MonoBehaviour
             level++;
             _start = false;
         }
+        // check if there is no enemy
 
         GameObject.Find("LevelNum").GetComponent<Text>().text = (level + 1).ToString();
+        // Change text to level number
         /*
-        // var enemyNum = transform.childCount - 1;
-        // GameObject.Find("EnemyNum").GetComponent<Text>().text = enemyNum.ToString();
-        // Object in scene/canvas/EnemyNum
+        var enemyNum = transform.childCount - 1;
+        GameObject.Find("EnemyNum").GetComponent<Text>().text = enemyNum.ToString();
+        Object in scene/canvas/EnemyNum
         */
     }
 
@@ -52,4 +55,5 @@ public class EnemyManager : MonoBehaviour
         var enemy = Instantiate(prefabs[0], new Vector3(x, y, 0), Quaternion.identity, transform);
         enemy.name = "Clone Enemy";
     }
+    // spawn enemy
 }

@@ -5,10 +5,10 @@ using UnityEngine.Serialization;
 public class MagicianMove : MonoBehaviour
 {
     private const float HP_Origin = 100f;
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 10f;
     public float jumpCoolDown = 3f;
     public float gameJumpCoolDown;
-    public float spaceSpeed = 80f;
+    public float spaceSpeed = 60f;
     [FormerlySerializedAs("Position")] public Vector3 position;
     [FormerlySerializedAs("_isRotate")] public bool isRotate;
     [FormerlySerializedAs("_isLeft")] public bool isLeft; // 需不需要反向
@@ -112,7 +112,20 @@ public class MagicianMove : MonoBehaviour
         else _hitWall = "None";
         if (other.gameObject.CompareTag("EDGE")) _hitWall = "Over";
 
-        if (other.gameObject.CompareTag("Enemy")) ModifyHp(-5);
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // Debug.Log("MagicianHitEnemy");
+            // move back
+            // get where enemy from
+            var enemyPosition = other.gameObject.transform.position;
+            // calculate the angle on enter collision
+            var angle = Mathf.Atan2(enemyPosition.y - position.y, enemyPosition.x - position.x) * Mathf.Rad2Deg;
+            // move back by the angle
+            transform.Translate(Mathf.Cos(angle * Mathf.Deg2Rad) * -moveSpeed * 5 * Time.deltaTime,
+                Mathf.Sin(angle * Mathf.Deg2Rad) * -moveSpeed * 5 * Time.deltaTime, 0);
+            // decrease hp
+            ModifyHp(-10);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -134,7 +147,14 @@ public class MagicianMove : MonoBehaviour
     {
         hp += num;
         if (hp > 100) hp = 100;
-        if (hp < 0) hp = 0;
+        if (hp < 0)
+        {
+            hp = 0;
+            // game over
+            //TODO: Game Over Scene
+            Debug.Log("Game Over");
+            Application.Quit();
+        }
     }
 
     private void ScaleHpBar(float Hp)

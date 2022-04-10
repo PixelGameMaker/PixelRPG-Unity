@@ -57,7 +57,7 @@ public class BulletManager : MonoBehaviour
         y = (mousePosition.y - (height / 2));
         // vector_Move = new Vector3(x / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, y / Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)) / 30, 0f);
         vector_Move = new Vector3(x, y, 0);
-        return vector_Move.normalized / 30;
+        return vector_Move.normalized / 25;
     }
 
     void ModifyMP(int num)
