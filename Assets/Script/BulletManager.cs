@@ -19,8 +19,7 @@ public class BulletManager : MonoBehaviour
     {
         width = Screen.width;
         height = Screen.height;
-        Debug.Log(width);
-        Debug.Log(height);
+        Debug.Log(width + " x " + height);
         MP = GameObject.Find("Magician").GetComponent<MagicianMove>().mpOrigin;
     }
 

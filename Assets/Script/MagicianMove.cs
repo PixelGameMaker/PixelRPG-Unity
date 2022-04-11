@@ -8,7 +8,7 @@ public class MagicianMove : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     public float jumpCoolDown = 3f;
     public float gameJumpCoolDown;
-    public float spaceSpeed = 60f;
+    public float spaceSpeed = 50f;
     [FormerlySerializedAs("Position")] public Vector3 position;
     [FormerlySerializedAs("_isRotate")] public bool isRotate;
     [FormerlySerializedAs("_isLeft")] public bool isLeft; // 需不需要反向
@@ -116,7 +116,7 @@ public class MagicianMove : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            // Debug.Log("MagicianHitEnemy");
+            Debug.Log("MagicianHitEnemy");
             // move back
             // get where enemy from
             var enemyPosition = other.gameObject.transform.position;
@@ -139,12 +139,7 @@ public class MagicianMove : MonoBehaviour
         else _hitWall = "None";
     }
 
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // if (collision.gameObject.CompareTag("Bullet")) ModifyHP(-5);
-    }
-    */
+
     private void ModifyHp(int num)
     {
         hp += num;
