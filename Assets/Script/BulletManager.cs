@@ -31,7 +31,7 @@ public class BulletManager : MonoBehaviour
             if (GameCD >= CD && MP > 5)
             {
                 SpawnBullet();
-                ModifyMP(-5);
+                ModifyMP(-10);
                 GameCD = 0;
             }
 

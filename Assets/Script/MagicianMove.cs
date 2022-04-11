@@ -123,8 +123,8 @@ public class MagicianMove : MonoBehaviour
             // calculate the angle on enter collision
             var angle = Mathf.Atan2(enemyPosition.y - position.y, enemyPosition.x - position.x) * Mathf.Rad2Deg;
             // move back by the angle
-            transform.Translate(Mathf.Cos(angle * Mathf.Deg2Rad) * -moveSpeed * 5 * Time.deltaTime,
-                Mathf.Sin(angle * Mathf.Deg2Rad) * -moveSpeed * 5 * Time.deltaTime, 0);
+            transform.Translate(Mathf.Cos(angle * Mathf.Deg2Rad) * -moveSpeed * 50 * Time.deltaTime,
+                Mathf.Sin(angle * Mathf.Deg2Rad) * -moveSpeed * 50 * Time.deltaTime, 0);
             // decrease hp
             ModifyHp(-10);
         }
